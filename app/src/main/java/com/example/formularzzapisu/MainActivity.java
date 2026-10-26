@@ -1,5 +1,6 @@
 package com.example.formularzzapisu;
 
+import androidx.appcompat.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -22,6 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         btnBirthDate.setOnClickListener(v -> showDatePicker());
         btnSubmit.setOnClickListener(v -> {
             if (validateForm()) {
-                buildSummary();
+                askForConfirmation();
             }
         });
 
@@ -112,6 +114,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
+    }
+
+
+    private void askForConfirmation() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_title)
+                .setMessage(R.string.confirm_message)
+                .setPositiveButton(R.string.yes, (dialog, which) -> submitForm())
+                .setNegativeButton(R.string.no, null)
+                .show();
+    }
+
+    private void submitForm() {
+        tvSummary.setText(buildSummary());
+
+        Snackbar.make(findViewById(R.id.main), R.string.sent, Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, v -> tvSummary.setText(""))
+                .show();
     }
 
 
@@ -166,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void buildSummary() {
+    private String buildSummary() {
         String mode = rgMode.getCheckedRadioButtonId() == R.id.rbOnsite
                 ? getString(R.string.mode_onsite)
                 : getString(R.string.mode_remote);
@@ -175,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 ? getString(R.string.yes_short)
                 : getString(R.string.no_short);
 
-        tvSummary.setText(getString(R.string.summary_format,
+        return(getString(R.string.summary_format,
                 etName.getText().toString().trim(),
                 etEmail.getText().toString().trim(),
                 birthDate,
