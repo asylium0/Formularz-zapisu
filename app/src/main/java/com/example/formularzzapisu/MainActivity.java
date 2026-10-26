@@ -2,6 +2,7 @@ package com.example.formularzzapisu;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,6 +133,35 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
     private boolean validateForm(){
+        String name = etName.getText().toString().trim();
+        if (name.isEmpty()) {
+            etName.setError(getString(R.string.error_name));
+            etName.requestFocus();
+            return false;
+        }
+
+        String email = etEmail.getText().toString().trim();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError(getString(R.string.error_email));
+            etEmail.requestFocus();
+            return false;
+        }
+
+        if (birthDate.isEmpty()) {
+            Toast.makeText(this, R.string.error_date, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (spCourse.getSelectedItemPosition() == 0) {       // pozycja 0 = brak wyboru
+            Toast.makeText(this, R.string.error_course, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (rgMode.getCheckedRadioButtonId() == -1) {        // -1 = nic nie zaznaczono
+            Toast.makeText(this, R.string.error_mode, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 
