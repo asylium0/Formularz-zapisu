@@ -1,3 +1,46 @@
 <resources>
-    <string name="app_name">formularz zapisu</string>
+    <string name="app_name">Zapisy na kurs</string>
+
+    <string name="header">Zapisy na kurs</string>
+    <string name="label_name">Imię i nazwisko</string>
+    <string name="label_email">Adres e-mail</string>
+    <string name="label_birth_date">Data urodzenia</string>
+    <string name="label_course">Kurs</string>
+    <string name="label_mode">Tryb zajęć</string>
+    <string name="label_level">Poziom zaawansowania</string>
+
+    <string name="hint_name">Jan Kowalski</string>
+    <string name="hint_email">jan@przyklad.pl</string>
+    <string name="btn_pick_date">Wybierz datę</string>
+    <string name="mode_onsite">Stacjonarny</string>
+    <string name="mode_remote">Zdalny</string>
+    <string name="newsletter">Chcę dostawać newsletter</string>
+    <string name="terms">Akceptuję regulamin</string>
+    <string name="btn_submit">WYŚLIJ ZGŁOSZENIE</string>
+
+    <string name="error_name">Podaj imię i nazwisko</string>
+    <string name="error_email">Niepoprawny adres e-mail</string>
+    <string name="error_date">Wybierz datę urodzenia</string>
+    <string name="error_course">Wybierz kurs z listy</string>
+    <string name="error_mode">Zaznacz tryb zajęć</string>
+
+    <string name="confirm_title">Wysłać zgłoszenie?</string>
+    <string name="confirm_message">Sprawdź dane przed wysłaniem. Tej operacji nie da się cofnąć po zamknięciu aplikacji.</string>
+    <string name="yes">Tak, wyślij</string>
+    <string name="no">Popraw</string>
+
+    <string name="sent">Zgłoszenie wysłane</string>
+    <string name="undo">Cofnij</string>
+
+    <string name="summary_format">%1$s\n%2$s\nUr. %3$s\nKurs: %4$s\nTryb: %5$s\nPoziom: %6$d/10\nNewsletter: %7$s</string>
+    <string name="yes_short">tak</string>
+    <string name="no_short">nie</string>
+
+    <string-array name="courses">
+        <item>-- wybierz kurs --</item>
+        <item>Programowanie w Javie</item>
+        <item>Aplikacje mobilne</item>
+        <item>Bazy danych</item>
+        <item>Sieci komputerowe</item>
+    </string-array>
 </resources>
